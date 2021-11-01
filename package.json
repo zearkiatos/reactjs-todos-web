@@ -20,7 +20,8 @@
     "docker:dev": "docker-compose -f docker-compose.develop.yml up --build",
     "docker:build": "docker-compose up --build",
     "start:watch": "nodemon start",
-    "dev": "npm run start:watch"
+    "dev": "npm run start:watch",
+    "build:ci": "CI=false npm run build"
   },
   "eslintConfig": {
     "extends": [
