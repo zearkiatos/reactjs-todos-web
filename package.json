@@ -1,5 +1,6 @@
 {
   "name": "reactjs-todos-web",
+  "homepage": ".",
   "description": "It is a simple reactjs ⚛️ todo 📝 ✅ web application to practice. Todo application let to the user to list, create and list differents task ✅",
   "version": "0.1.0",
   "private": true,

@@ -2,6 +2,7 @@ import { Fragment } from "react";
 import TodoCounter from "./TodoCounter";
 import TodoSearch from "./TodoSearch";
 import TodoList from "./TodoList";
+import TodoItems from './TodoItems';
 import CreateTodoButton from "./CreateTodoButton";
 // import './App.css';
 
@@ -10,7 +11,9 @@ const App = () => {
     <Fragment>
       <TodoCounter />
       <TodoSearch />
-      <TodoList />
+      <TodoList>
+        <TodoItems />
+      </TodoList>
       <CreateTodoButton />
     </Fragment>
   );

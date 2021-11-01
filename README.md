@@ -2,6 +2,12 @@
 
 It is a simple reactjs ⚛️ todo 📝 ✅ web application to practice. Todo application let to the user to list, create and list differents task ✅
 
+![Github](https://github.com/zearkiatos/reactjs-todos-web/actions/workflows/action.yml/badge.svg)
+
+## Project link
+
+Github: [https://zearkiatos.github.io/reactjs-todos-web/](https://zearkiatos.github.io/reactjs-todos-web/)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
