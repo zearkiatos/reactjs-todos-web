@@ -14,7 +14,6 @@ install-dependencies:
     - npm install --silent
     - npm install react-scripts -g --silent
     - npm install nodemon -g --silent
-    - npm install -g firebase
   artifacts:
     expire_in: 1hr
     paths:
@@ -93,6 +92,7 @@ firebase-deploy:
     - build-app
   script:
     - echo "Deploy to Firebase 🔥"
+    - npm install -g firebase
     - npm run firebase:deploy
   artifacts:
     paths:
