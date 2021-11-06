@@ -42,7 +42,9 @@ jobs:
         FIREBASE_MESSAGING_SENDER_ID: ${{ secrets.FIREBASE_MESSAGING_SENDER_ID }}
         FIREBASE_APP_ID: ${{ secrets.FIREBASE_APP_ID }}
     - name: Build Web Application 
-      run: npm run build:ci
+      run: |
+        cat .env
+        npm run build:ci
     - name: Firebase Setup
       uses: pocket-apps/action-setup-firebase@v2
       with:
