@@ -4,7 +4,6 @@ stages:
   - docker
   - build
   - deploy
-  - firebaseDeploy
 
 install-dependencies:
   stage: install
@@ -84,19 +83,3 @@ pages:
       - public
   only:
     - branches
-
-firebase-deploy:
-  stage: firebaseDeploy
-  environment: staging
-  dependencies:
-    - build-app
-  script:
-    - echo "Deploy to Firebase 🔥"
-    - npm install -g firebase
-    - npm run firebase:deploy
-  artifacts:
-    paths:
-      - public
-  only:
-    - develop
-    - master
