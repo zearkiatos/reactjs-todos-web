@@ -6,8 +6,6 @@ It is a simple reactjs ⚛️ todo 📝 ✅ web application to practice. Todo ap
 ![GitlabCI](https://gitlab.com/caprilespe/reactjs-todos-web/badges/develop/pipeline.svg)
 ## Project link
 
-https://reactjs-todos-web.web.app/
-
 Github: [https://zearkiatos.github.io/reactjs-todos-web/](https://zearkiatos.github.io/reactjs-todos-web/)
 
 Gitlab 🦊: [https://caprilespe.gitlab.io/reactjs-todos-web/](https://caprilespe.gitlab.io/reactjs-todos-web/)
