@@ -12,6 +12,10 @@ Gitlab 🦊: [https://caprilespe.gitlab.io/reactjs-todos-web/](https://caprilesp
 
 Firebase 🔥: [https://reactjs-todos-web.web.app/](https://reactjs-todos-web.web.app/)
 
+Vercel: [https://reactjs-todos-web.vercel.app/](https://reactjs-todos-web.vercel.app/)
+
+Netlify: [https://reactjs-todos-web.netlify.app](https://reactjs-todos-web.netlify.app)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

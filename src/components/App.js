@@ -1,10 +1,5 @@
 import React, { useState } from 'react';
-import { Fragment } from "react";
-import TodoCounter from "./TodoCounter";
-import TodoSearch from "./TodoSearch";
-import TodoList from "./TodoList";
-import TodoItems from './TodoItems';
-import CreateTodoButton from "./CreateTodoButton";
+import UI from './UI';
 import todosMock from '../mock/todosMock.json'
 
 const App = () => {
@@ -16,17 +11,14 @@ const App = () => {
   if (searchValue)
     todosFiltered = todosMock.filter(todo => todo.text.toLowerCase().includes(searchValue));
   return (
-    <Fragment>
-      <TodoCounter 
-        total={totalTodos}
-        completed={completedTodos}
-      />
-      <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
-      <TodoList>
-        <TodoItems todos={todosFiltered} setTodos={setTodos} />
-      </TodoList>
-      <CreateTodoButton />
-    </Fragment>
+    <UI
+      setSearchValue={setSearchValue}
+      setTodos={setTodos}
+      completedTodos={completedTodos} 
+      totalTodos={totalTodos}
+      todosFiltered={todosFiltered}
+      searchValue={searchValue}
+    />
   );
 };
 
