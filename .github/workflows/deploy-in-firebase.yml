@@ -43,6 +43,5 @@ jobs:
     - name: Build Web Application 
       run: npm run build:ci
     - name: Firebase Deploy 🔥
-    - uses: pocket-apps/action-setup-firebase@v2
-      run: |
-        npm run firebase:deploy
+      uses: pocket-apps/action-setup-firebase@v2
+      run: npm run firebase:deploy
