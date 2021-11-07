@@ -21,8 +21,10 @@ const renderTodoItems = ({ todos, setTodos }) =>
         };
 
         const onDelete = (text) => {
+          const localStorageTodosRepository = new LocalStorageTodosRepository('TODOS');
           let newTodos = todos.filter((todo) => todo.text !== text);
           setTodos(newTodos);
+          localStorageTodosRepository.save(newTodos);
         };
 
         return (

@@ -4,10 +4,6 @@ class Todos {
         this.completed = false;
     }
 
-    constructor(text, completed) {
-        this.text = text;
-        this.completed = completed;
-    }
     setText(text) {
         this.text = text;
     }

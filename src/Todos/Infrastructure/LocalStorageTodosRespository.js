@@ -12,7 +12,7 @@ class LocalStorageTodosRepository extends TodosRepository {
     }
 
     find() {
-        const todos = localStorage.getItem(this.storageName) || [];
+        const todos = localStorage.getItem(this.storageName) || '[]';
         const todosParsed = JSON.parse(todos);
         return todosParsed;
     }
