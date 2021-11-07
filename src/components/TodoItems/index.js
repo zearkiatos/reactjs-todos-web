@@ -1,12 +1,13 @@
 import React from "react";
 import TodoItem from "../TodoItem";
-import LocalStorageTodosRepository from '../../Todos/Infrastructure/LocalStorageTodosRespository';
+import useTodosLocalStorageRepository from '../../hooks/useTodosLocalStorageRepository';
 
 const renderTodoItems = ({ todos, setTodos }) =>
   todos
     ? todos.map((todo) => {
+        const [ items, saveItems ] = useTodosLocalStorageRepository("TODOS");
+        console.log(saveItems);
         const onComplete = (text, completed) => {
-          const localStorageTodosRepository = new LocalStorageTodosRepository('TODOS');
           alert(`You complete the todo ${text}`);
           const todoMapped = todos.map((todo) =>
             todo.text === text
@@ -17,14 +18,13 @@ const renderTodoItems = ({ todos, setTodos }) =>
               : todo
           );
           setTodos(todoMapped);
-          localStorageTodosRepository.save(todoMapped);
+          saveItems(todoMapped);
         };
 
         const onDelete = (text) => {
-          const localStorageTodosRepository = new LocalStorageTodosRepository('TODOS');
           let newTodos = todos.filter((todo) => todo.text !== text);
           setTodos(newTodos);
-          localStorageTodosRepository.save(newTodos);
+          saveItems(newTodos);
         };
 
         return (

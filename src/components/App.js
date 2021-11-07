@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
+import useTodosLocalStorageRepository from '../hooks/useTodosLocalStorageRepository';
 import UI from './UI';
-import LocalStorageTodosRepository from '../Todos/Infrastructure/LocalStorageTodosRespository';
 
 const App = () => {
-  const localStorageTodosRepository = new LocalStorageTodosRepository('TODOS');
-  let todosParsed = localStorageTodosRepository.find();
+  const [ items ] = useTodosLocalStorageRepository('TODOS');
   const [searchValue, setSearchValue] = useState('');
-  const [todos, setTodos] = useState(todosParsed);
+  const [todos, setTodos] = useState(items);
   const completedTodos = todos.filter(todo => todo.completed).length;
   const totalTodos = todos.length;
   let todosFiltered = todos
   if (searchValue)
-    todosFiltered = todosParsed.filter(todo => todo.text.toLowerCase().includes(searchValue));
+    todosFiltered = items.filter(todo => todo.text.toLowerCase().includes(searchValue));
   return (
     <UI
       setSearchValue={setSearchValue}
