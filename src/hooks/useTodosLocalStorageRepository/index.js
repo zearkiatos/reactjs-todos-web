@@ -24,7 +24,7 @@ const useTodosLocalStorageRepository = (itemName) => {
     }
   });
 
-  return { items, saveItems, loading };
+  return { items, saveItems, loading, error };
 };
 
 export default useTodosLocalStorageRepository;
