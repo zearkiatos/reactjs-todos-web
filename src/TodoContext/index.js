@@ -5,6 +5,7 @@ const TodoContext = React.createContext();
 
 const TodoProvider = (props) => {
   const { items, loading, error } = useTodosLocalStorageRepository("TODOS");
+  console.log(items);
   const [searchValue, setSearchValue] = useState("");
   const [todos, setTodos] = useState(items);
   const completedTodos = todos.filter((todo) => todo.completed).length;
@@ -17,7 +18,7 @@ const TodoProvider = (props) => {
   console.log("Render before the use effect");
   useEffect(() => {
     console.log("Use Effect");
-  }, [totalTodos]);
+  }, items);
   console.log("Render after the use effect");
   return (
     <TodoContext.Provider

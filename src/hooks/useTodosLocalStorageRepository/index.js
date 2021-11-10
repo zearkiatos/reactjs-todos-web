@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import LocalStorageTodosRepository from "../../Todos/Infrastructure/LocalStorageTodosRespository";
 
 const useTodosLocalStorageRepository = (itemName) => {
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState({});
+  const [error, setError] = useState(null);
+  const [items, setItems] = useState([]);
   let localStorageTodosRepository = new LocalStorageTodosRepository(itemName);
-  let items = [];
   const saveItems = (items) => {
     try {
       localStorageTodosRepository.save(items);
@@ -13,18 +13,25 @@ const useTodosLocalStorageRepository = (itemName) => {
       setError(ex);
     }
   };
-  useEffect(() => {
+
+  const findItems = () => {
+    let todos = [];
     try {
-      setTimeout(() => {
-        items = localStorageTodosRepository.find();
-        setLoading(false);
-      }, 5000);
+      todos = localStorageTodosRepository.find(items);
     } catch (ex) {
       setError(ex);
     }
-  });
+    return todos;
+  };
 
-  return { items, saveItems, loading, error };
+  setTimeout(() => {
+    let items = findItems();
+    setItems(items)
+    setLoading(false);
+  }, 5000);
+
+
+  return { items, findItems, saveItems, loading, error };
 };
 
 export default useTodosLocalStorageRepository;
