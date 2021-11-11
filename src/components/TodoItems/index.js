@@ -6,7 +6,6 @@ const renderTodoItems = ({ todos, setTodos }) =>
   todos
     ? todos.map((todo) => {
         const { saveItems } = useTodosLocalStorageRepository("TODOS");
-        console.log(saveItems);
         const onComplete = (text, completed) => {
           alert(`You complete the todo ${text}`);
           const todoMapped = todos.map((todo) =>
@@ -23,6 +22,7 @@ const renderTodoItems = ({ todos, setTodos }) =>
 
         const onDelete = (text) => {
           let newTodos = todos.filter((todo) => todo.text !== text);
+          console.log(newTodos);
           setTodos(newTodos);
           saveItems(newTodos);
         };
