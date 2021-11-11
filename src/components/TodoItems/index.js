@@ -5,8 +5,7 @@ import useTodosLocalStorageRepository from '../../hooks/useTodosLocalStorageRepo
 const renderTodoItems = ({ todos, setTodos }) =>
   todos
     ? todos.map((todo) => {
-        const { saveItems } = useTodosLocalStorageRepository("TODOS");
-        console.log(saveItems);
+        const { save } = useTodosLocalStorageRepository("TODOS");
         const onComplete = (text, completed) => {
           alert(`You complete the todo ${text}`);
           const todoMapped = todos.map((todo) =>
@@ -18,13 +17,14 @@ const renderTodoItems = ({ todos, setTodos }) =>
               : todo
           );
           setTodos(todoMapped);
-          saveItems(todoMapped);
+          save(todoMapped);
         };
 
         const onDelete = (text) => {
           let newTodos = todos.filter((todo) => todo.text !== text);
+          console.log(newTodos);
           setTodos(newTodos);
-          saveItems(newTodos);
+          save(newTodos);
         };
 
         return (
