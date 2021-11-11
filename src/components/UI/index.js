@@ -15,8 +15,8 @@ const UI = () => {
         totalTodos,
         completedTodos,
         searchValue,
-        todosFiltered,
         setSearchValue,
+        todosFiltered,
         setTodos
       }) => (
         <Fragment>
@@ -29,7 +29,7 @@ const UI = () => {
             {error && <p>Something was wrong</p>}
             {loading && <p>Loading...</p>}
             {!loading && !todosFiltered.length && <p>Create your first TODO</p>}
-            <TodoItems todos={todosFiltered} setTodos={setTodos} />
+            {!loading && todosFiltered && <TodoItems todos={todosFiltered} setTodos={setTodos} />}
           </TodoList>
           <CreateTodoButton />
         </Fragment>
