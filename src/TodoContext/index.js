@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import useTodosLocalStorageRepository from "../hooks/useTodosLocalStorageRepository";
 
 const TodoContext = React.createContext();
+const FAKE_LOADING_TIMER = 1000;
 
 const TodoProvider = (props) => {
   const [loading, setLoading] = useState(true);
@@ -12,7 +13,7 @@ const TodoProvider = (props) => {
   try {
     setTimeout(() => {
       setLoading(false);
-    }, 5000);
+    }, FAKE_LOADING_TIMER);
     todosFound = find();
   }
   catch (ex) {

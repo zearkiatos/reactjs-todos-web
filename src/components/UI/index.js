@@ -8,33 +8,26 @@ import { TodoContext } from "../../TodoContext";
 
 const UI = () => {
   return (
-    <TodoContext.Consumer>
-      {({
-        loading,
-        error,
-        totalTodos,
-        completedTodos,
-        searchValue,
-        setSearchValue,
-        todosFiltered,
-        setTodos
-      }) => (
-        <Fragment>
-          <TodoCounter total={totalTodos} completed={completedTodos} />
-          <TodoSearch
-            searchValue={searchValue}
-            setSearchValue={setSearchValue}
-          />
+    <Fragment>
+      <TodoCounter />
+      <TodoSearch />
+      <TodoContext.Consumer>
+        {({
+          loading,
+          error,
+          todosFiltered,
+          setTodos
+        }) => (
           <TodoList>
             {error && <p>Something was wrong</p>}
             {loading && <p>Loading...</p>}
             {!loading && !todosFiltered.length && <p>Create your first TODO</p>}
             {!loading && todosFiltered && <TodoItems todos={todosFiltered} setTodos={setTodos} />}
           </TodoList>
-          <CreateTodoButton />
-        </Fragment>
-      )}
-    </TodoContext.Consumer>
+        )}
+      </TodoContext.Consumer>
+      <CreateTodoButton />
+    </Fragment>
   );
 };
 
