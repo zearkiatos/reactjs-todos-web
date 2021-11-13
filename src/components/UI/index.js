@@ -5,6 +5,7 @@ import TodoList from "../TodoList";
 import TodoItems from "../TodoItems";
 import CreateTodoButton from "../CreateTodoButton";
 import { TodoContext } from "../../TodoContext";
+import Modal from '../Modal';
 
 const UI = () => {
   return (
@@ -25,8 +26,19 @@ const UI = () => {
             {!loading && todosFiltered && <TodoItems todos={todosFiltered} setTodos={setTodos} />}
           </TodoList>
         )}
+
       </TodoContext.Consumer>
-      <CreateTodoButton />
+      <TodoContext.Consumer>
+        {({ openModal, setOpenModal }) => (
+          <Fragment>
+            <CreateTodoButton openModal={openModal} setOpenModal={setOpenModal} />
+            {!!openModal && <Modal openModal={openModal}>
+              <p>I'm a modal</p>
+            </Modal>}
+          </Fragment>
+        )}
+      </TodoContext.Consumer>
+
     </Fragment>
   );
 };
