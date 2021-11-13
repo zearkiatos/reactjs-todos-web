@@ -57,7 +57,7 @@
     color: #4caf50;
   }
   
-  .icon-delete {
+  /* .icon-delete {
     position: absolute;
     color: white;
     top: -0.8em;
@@ -74,7 +74,7 @@
     color: red;
     border-color:red;
     background-color: white;
-  }
+  } */
 
   .icon-pin {
     position: absolute;
