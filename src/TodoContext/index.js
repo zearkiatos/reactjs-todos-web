@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import useTodosLocalStorageRepository from "../hooks/useTodosLocalStorageRepository";
 
 const TodoContext = React.createContext();
-const FAKE_LOADING_TIMER = 1000;
+const FAKE_LOADING_TIMER = 5000;
 
 const TodoProvider = (props) => {
   const [loading, setLoading] = useState(true);

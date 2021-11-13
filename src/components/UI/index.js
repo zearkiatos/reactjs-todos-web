@@ -7,6 +7,9 @@ import CreateTodoButton from "../CreateTodoButton";
 import { TodoContext } from "../../TodoContext";
 import Modal from '../Modal';
 import TodosForm from "../TodosForm";
+import Error from '../Error';
+import Loading from '../Loading';
+import EmptyTodos from '../EmptyTodos';
 
 const UI = () => {
   return (
@@ -21,9 +24,9 @@ const UI = () => {
           setTodos
         }) => (
           <TodoList>
-            {error && <p>Something was wrong</p>}
-            {loading && <p>Loading...</p>}
-            {!loading && !todosFiltered.length && <p>Create your first TODO</p>}
+            {error && <Error error={error} />}
+            {loading && <Loading quantity="5" />}
+            {!loading && !todosFiltered.length && <EmptyTodos />}
             {!loading && todosFiltered && <TodoItems todos={todosFiltered} setTodos={setTodos} />}
           </TodoList>
         )}
