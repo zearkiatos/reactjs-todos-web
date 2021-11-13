@@ -56,25 +56,6 @@
   .icon-check-active {
     color: #4caf50;
   }
-  
-  /* .icon-delete {
-    position: absolute;
-    color: white;
-    top: -0.8em;
-    right: 0.5em;
-    font-size: 20pt;
-    background-color: red;
-    border-radius: 50%;
-    border-style: solid;
-    border-spacing: 5px;
-    border-color:white;
-    transition: all ease-in-out 0.5s;
-  }
-  .icon-delete:hover {
-    color: red;
-    border-color:red;
-    background-color: white;
-  } */
 
   .icon-pin {
     position: absolute;
