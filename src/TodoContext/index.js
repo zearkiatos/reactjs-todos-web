@@ -28,7 +28,6 @@ const TodoProvider = (props) => {
   let totalTodos = todosFiltered.length;
 
   useEffect(() => {
-    console.log(searchValue);
     const todosFound = todos.filter((todo) =>
       todo.text.toLowerCase().includes(searchValue)
     );

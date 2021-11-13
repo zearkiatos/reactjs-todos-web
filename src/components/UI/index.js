@@ -6,6 +6,7 @@ import TodoItems from "../TodoItems";
 import CreateTodoButton from "../CreateTodoButton";
 import { TodoContext } from "../../TodoContext";
 import Modal from '../Modal';
+import TodosForm from "../TodosForm";
 
 const UI = () => {
   return (
@@ -31,9 +32,9 @@ const UI = () => {
       <TodoContext.Consumer>
         {({ openModal, setOpenModal }) => (
           <Fragment>
-            <CreateTodoButton openModal={openModal} setOpenModal={setOpenModal} />
+            <CreateTodoButton setOpenModal={setOpenModal} />
             {!!openModal && <Modal openModal={openModal}>
-              <p>I'm a modal</p>
+              <TodosForm />
             </Modal>}
           </Fragment>
         )}

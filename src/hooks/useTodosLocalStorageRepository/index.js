@@ -10,6 +10,15 @@ const useTodosLocalStorageRepository = (itemName) => {
     }
   };
 
+  const add = (todo) => {
+    try {
+      const newTodos = localStorageTodosRepository.add(todo);
+      return newTodos;
+    } catch (ex) {
+      throw ex;
+    }
+  }
+
   const find = () => {
     try {
       const todos = localStorageTodosRepository.find();
@@ -20,7 +29,7 @@ const useTodosLocalStorageRepository = (itemName) => {
   }
 
 
-  return { save, find };
+  return { save, find, add };
 };
 
 export default useTodosLocalStorageRepository;

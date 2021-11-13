@@ -12,12 +12,15 @@ const TodoItem = ({ text, completed, onComplete, onDelete }) => {
       <p className={`todo-item-p ${completed && "todo-item-p-complete"}`}>
         {text}
       </p>
-      <span
+      <span className="icon icon-pin">
+        📌
+      </span>
+      {/* <span
         className="icon icon-delete"
         onClick={() => onDelete(text)}
       >
         x
-      </span>
+      </span> */}
     </li>
   );
 };
