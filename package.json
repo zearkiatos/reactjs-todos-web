@@ -26,7 +26,9 @@
     "start:watch": "nodemon start",
     "dev": "npm run start:watch",
     "build:ci": "CI=false npm run build",
-    "firebase:deploy": "firebase deploy"
+    "firebase:deploy": "firebase deploy",
+    "pregithub:deploy": "npm run build",
+    "github:deploy": "gh-pages -b build"
   },
   "eslintConfig": {
     "extends": [
