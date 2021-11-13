@@ -1,0 +1,18 @@
+[
+    {
+      "text": "Cut onions",
+      "completed": true
+    },
+    {
+      "text": "Take the reactjs introduction course",
+      "completed": false
+    },
+    {
+      "text": "Cry with the crier 😭",
+      "completed": true
+    },
+    {
+      "text": "Study reactjs ⚛️",
+      "completed": false
+    }
+  ]

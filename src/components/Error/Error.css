@@ -1,0 +1,10 @@
+.error-container {
+    padding:1em;
+    background-color:#222;
+    color:#f00
+}
+
+.error-container p {
+    padding:1em;
+    background-color:#555;
+}

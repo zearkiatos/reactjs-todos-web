@@ -1,0 +1,54 @@
+{
+  "name": "reactjs-todos-web",
+  "homepage": ".",
+  "description": "It is a simple reactjs ⚛️ todo 📝 ✅ web application to practice. Todo application let to the user to list, create and list differents task ✅",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@testing-library/jest-dom": "^5.11.4",
+    "@testing-library/react": "^11.1.0",
+    "@testing-library/user-event": "^12.1.10",
+    "dotenv": "^10.0.0",
+    "firebase": "^9.3.0",
+    "jest": "^26.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-scripts": "4.0.3",
+    "web-vitals": "^1.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "docker:dev": "docker-compose -f docker-compose.develop.yml up --build",
+    "docker:build": "docker-compose up --build",
+    "start:watch": "nodemon start",
+    "dev": "npm run start:watch",
+    "build:ci": "CI=false npm run build",
+    "firebase:deploy": "firebase deploy",
+    "pregithub:deploy": "npm run build",
+    "github:deploy": "gh-pages -b build"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
