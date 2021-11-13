@@ -7,8 +7,19 @@ class LocalStorageTodosRepository extends TodosRepository {
         this.save(todosStorage);
     }
 
-    save(todo) {
-        localStorage.setItem(this.storageName, JSON.stringify(todo));
+    save(todos) {
+        localStorage.setItem(this.storageName, JSON.stringify(todos));
+    }
+
+    add(todo) {
+        const todos = localStorage.getItem(this.storageName) || '[]';
+        const todosParsed = JSON.parse(todos);
+        const newTodos = [...todosParsed, {
+            completed: false,
+            text: todo.text
+        }];
+        localStorage.setItem(this.storageName, JSON.stringify(newTodos));
+        return newTodos;
     }
 
     find() {
