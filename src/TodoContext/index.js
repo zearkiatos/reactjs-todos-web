@@ -9,6 +9,7 @@ const TodoProvider = (props) => {
   const [error, setError] = useState(null);
   const { find } = useTodosLocalStorageRepository("TODOS");
   const [searchValue, setSearchValue] = useState("");
+  const [openModal, setOpenModal] = useState(false);
   let todosFound = [];
   try {
     setTimeout(() => {
@@ -52,6 +53,8 @@ const TodoProvider = (props) => {
         setSearchValue,
         todosFiltered,
         setTodos,
+        openModal,
+        setOpenModal
       }}
     >
       {props.children}
