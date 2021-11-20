@@ -16,12 +16,6 @@ const TodoItem = ({ text, completed, onComplete, onDelete }) => {
         onClick={() => onDelete(text)}>
         📌
       </span>
-      {/* <span
-        className="icon icon-delete"
-        onClick={() => onDelete(text)}
-      >
-        x
-      </span> */}
     </li>
   );
 };
