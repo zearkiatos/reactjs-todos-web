@@ -1,13 +1,8 @@
-import { Fragment } from 'react';
-import TodoCounter from '../TodoCounter';
-import TodoSearch from '../TodoSearch';
-
-const TodoHeader = () => {
+const TodoHeader = ({ children }) => {
     return (
-        <Fragment>
-            <TodoCounter />
-            <TodoSearch />
-        </Fragment>
+        <header>
+            {children}
+        </header>
     )
 }
 

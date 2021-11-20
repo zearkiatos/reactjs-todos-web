@@ -1,6 +1,4 @@
-import React, { Fragment } from "react";
-import TodoCounter from "../TodoCounter";
-import TodoSearch from "../TodoSearch";
+import React, { Fragment, useContext } from "react";
 import TodoList from "../TodoList";
 import TodoItems from "../TodoItems";
 import CreateTodoButton from "../CreateTodoButton";
@@ -10,12 +8,24 @@ import TodosForm from "../TodosForm";
 import Error from '../Error';
 import Loading from '../Loading';
 import EmptyTodos from '../EmptyTodos';
+import TodoCounter from "../TodoCounter";
+import TodoSearch from "../TodoSearch";
+import TodoHeader from "../TodoHeader";
 
 const UI = () => {
+  const { totalTodos, completedTodos, searchValue, setSearchValue } = useContext(TodoContext);
   return (
     <Fragment>
-      <TodoCounter />
-      <TodoSearch />
+      <TodoHeader>
+        <TodoCounter
+          totalTodos={totalTodos}
+          completedTodos={completedTodos}
+        />
+        <TodoSearch
+          searchValue={searchValue}
+          setSearchValue={setSearchValue}
+        />
+      </TodoHeader>
       <TodoContext.Consumer>
         {({
           loading,
