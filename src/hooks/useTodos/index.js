@@ -1,15 +1,14 @@
-import React, { useState, useEffect } from "react";
-import useTodosLocalStorageRepository from "../hooks/useTodosLocalStorageRepository";
-
-const TodoContext = React.createContext();
+import { useState, useEffect } from "react";
+import useTodosLocalStorageRepository from "../useTodosLocalStorageRepository";
 const FAKE_LOADING_TIMER = 5000;
 
-const TodoProvider = (props) => {
+const useTodos = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const { find } = useTodosLocalStorageRepository("TODOS");
+  const { add: addTodos, find } = useTodosLocalStorageRepository("TODOS");
   const [searchValue, setSearchValue] = useState("");
   const [openModal, setOpenModal] = useState(false);
+  const [totalTodos, setTotalTodos] = useState(0);
   let todosFound = [];
   try {
     setTimeout(() => {
@@ -25,11 +24,10 @@ const TodoProvider = (props) => {
   const [todosFiltered, setTodosFiltered] = useState(todos);
 
   let completedTodos = todosFiltered.filter((todo) => todo.completed).length;
-  let totalTodos = todosFiltered.length;
 
   useEffect(() => {
     const todosFound = todos.filter((todo) =>
-      todo.text.toLowerCase().includes(searchValue)
+      todo.text.toLowerCase().includes(searchValue.toLowerCase())
     );
 
     if (todosFound.length !== todosFiltered.length) {
@@ -41,24 +39,23 @@ const TodoProvider = (props) => {
     setTodosFiltered(todos);
   }, [todos]);
 
-  return (
-    <TodoContext.Provider
-      value={{
-        loading,
-        error,
-        totalTodos,
-        completedTodos,
-        searchValue,
-        setSearchValue,
-        todosFiltered,
-        setTodos,
-        openModal,
-        setOpenModal
-      }}
-    >
-      {props.children}
-    </TodoContext.Provider>
-  );
+  useEffect(() => {
+    setTotalTodos(todosFiltered.length);
+  }, [todosFiltered]);
+
+  return {
+    loading,
+    error,
+    totalTodos,
+    completedTodos,
+    searchValue,
+    setSearchValue,
+    todosFiltered,
+    setTodos,
+    openModal,
+    setOpenModal,
+    addTodos
+  };
 };
 
-export { TodoContext, TodoProvider };
+export { useTodos };
