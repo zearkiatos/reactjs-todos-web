@@ -38,12 +38,16 @@ const App = () => {
           setSearchValue={setSearchValue}
         />
       </TodoHeader>
-      <TodoList>
-        {error && <Error error={error} />}
-        {loading && <Loading quantity="5" />}
-        {!loading && !todosFiltered.length && <EmptyTodos />}
-        {!loading && todosFiltered && <TodoItems todos={todosFiltered} setTodos={setTodos} />}
-      </TodoList>
+      <TodoList
+        error={error}
+        loading={loading}
+        showEmptyTodos={!loading && !todosFiltered.length}
+        showRender={!loading && todosFiltered}
+        onError={() => <Error error={error} />}
+        onLoading={() => <Loading quantity="5" />}
+        onEmptyTodos={() => <EmptyTodos />}
+        render={() => <TodoItems todos={todosFiltered} setTodos={setTodos} />}
+      />
       <CreateTodoButton setOpenModal={setOpenModal} />
       {!!openModal && <Modal openModal={openModal}>
         <TodosForm
