@@ -15,6 +15,7 @@ import TodoHeader from "./TodoHeader";
 const App = () => {
   const {
     totalTodos,
+    todos,
     completedTodos,
     searchValue,
     setSearchValue,
@@ -41,11 +42,13 @@ const App = () => {
       <TodoList
         error={error}
         loading={loading}
-        showEmptyTodos={!loading && !todosFiltered.length}
+        showEmptyTodos={!loading && !todos.length}
         showRender={!loading && todosFiltered}
+        showEmptySearchResults={(!totalTodos && todos.length)}
         onError={() => <Error error={error} />}
         onLoading={() => <Loading quantity="5" />}
-        onEmptyTodos={() => <EmptyTodos />}
+        onEmptyTodos={() => <EmptyTodos> <p>Create your first TODO</p> </EmptyTodos>}
+        onEmptySearchResults={() => <EmptyTodos><p>There is not result for: {searchValue} </p></EmptyTodos>}
         render={() => <TodoItems todos={todosFiltered} setTodos={setTodos} />}
       />
       <CreateTodoButton setOpenModal={setOpenModal} />

@@ -5,9 +5,11 @@ const TodoList = ({
   loading,
   showEmptyTodos,
   showRender,
+  showEmptySearchResults,
   onError,
   onLoading,
   onEmptyTodos,
+  onEmptySearchResults,
   render
 }) => {
   return (
@@ -15,6 +17,7 @@ const TodoList = ({
       {error && onError()}
       {loading && onLoading()}
       {showEmptyTodos && onEmptyTodos()}
+      {showEmptySearchResults && onEmptySearchResults()}
       {showRender && render()}
       <ul>{children}</ul>
     </section>

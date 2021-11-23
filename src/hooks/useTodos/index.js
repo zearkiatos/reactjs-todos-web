@@ -47,6 +47,7 @@ const useTodos = () => {
     loading,
     error,
     totalTodos,
+    todos,
     completedTodos,
     searchValue,
     setSearchValue,
