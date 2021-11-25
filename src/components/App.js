@@ -29,7 +29,7 @@ const App = () => {
   } = useTodos();
   return (
     <Fragment>
-      <TodoHeader>
+      <TodoHeader loading={loading}>
         <TodoCounter
           totalTodos={totalTodos}
           completedTodos={completedTodos}

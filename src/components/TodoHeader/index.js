@@ -1,9 +1,14 @@
-const TodoHeader = ({ children }) => {
+import React from 'react';
+const TodoHeader = ({ children, loading }) => {
+    const renderChildren = () => {
+        const childrenFormated = React.Children.toArray(children);
+        return childrenFormated.map(child => React.cloneElement(child, {loading}));
+    };
     return (
         <header>
-            {children}
+            {renderChildren()}
         </header>
-    )
+    );
 }
 
 export default TodoHeader;

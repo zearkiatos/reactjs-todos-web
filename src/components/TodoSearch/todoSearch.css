@@ -23,3 +23,7 @@
 .todo-search:focus {
   outline: none;
 }
+
+.todo-search:disabled {
+  opacity: 25%;
+}

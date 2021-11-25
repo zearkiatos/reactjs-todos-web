@@ -5,3 +5,8 @@
   padding: 48px;
   color: #F0F0EB
 }
+
+.loading
+{
+  opacity: 25%;
+}
