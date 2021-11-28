@@ -1,11 +1,12 @@
 import React from "react";
 import TodoItem from "../TodoItem";
 import useTodosLocalStorageRepository from '../../hooks/useTodosLocalStorageRepository';
+import constants from '../../constants'
 
 const renderTodoItems = ({ todos, setTodos }) =>
   todos
     ? todos.map((todo) => {
-        const { save } = useTodosLocalStorageRepository("TODOS");
+        const { save } = useTodosLocalStorageRepository(constants.STORAGE_NAME);
         const onComplete = (text, completed) => {
           alert(`You complete the todo ${text}`);
           const todoMapped = todos.map((todo) =>
