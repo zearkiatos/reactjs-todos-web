@@ -26,7 +26,8 @@ const App = () => {
     setTodos,
     openModal,
     setOpenModal,
-    addTodos
+    addTodos,
+    sincronize: sincronizeTodos
   } = useTodos();
   return (
     <Fragment>
@@ -65,7 +66,7 @@ const App = () => {
           />
         </Modal>
       )}
-      <ChangeAlertWithStorageListener />
+      <ChangeAlertWithStorageListener sincronizeTodos={sincronizeTodos} />
     </Fragment>
   );
 };
