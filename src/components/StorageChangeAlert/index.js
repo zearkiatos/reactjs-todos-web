@@ -1,21 +1,17 @@
 import React from "react";
 import withStorageListener from "./withStorageListener";
-import useTodosLocalStorageRepository from "../../hooks/useTodosLocalStorageRepository";
-import constants from "../../constants";
+import Refresh from "../Refresh";
+import Modal from '../Modal';
 
 const StorageChangeAlert = ({ show, toggleShow }) => {
-  const { find } = useTodosLocalStorageRepository(constants.STORAGE_NAME);
   if (show) {
     const onClickHandle = () => {
       toggleShow();
     };
     return (
-      <div>
-        <p>Was It changes?</p>
-        <button onClick={onClickHandle}>
-          Loading the information Again
-        </button>
-      </div>
+      <Modal openModal={show}>
+        <Refresh onClick={onClickHandle} />
+      </Modal>
     );
   } else {
     return null;
