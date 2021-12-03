@@ -1,21 +1,18 @@
-import { useContext, useState } from 'react';
-import { TodoContext } from '../../TodoContext';
-import useTodosLocalStorageRepository from '../../hooks/useTodosLocalStorageRepository';
+import { useState } from 'react';
 import './TodoForm.css'
 
-const TodosForm = () => {
+const TodosForm = ({
+    setTodos,
+    setOpenModal,
+    addTodos
+} ) => {
     const [newTodo, setTodo] = useState('');
-    const { add } = useTodosLocalStorageRepository('TODOS')
-    const {
-        setTodos,
-        setOpenModal,
-    } = useContext(TodoContext);
     const onCancel = () => {
         setOpenModal(false);
     };
     const onSubmit = (event) => {
         event.preventDefault();
-        const todos = add({
+        const todos = addTodos({
             text: newTodo
         });
         setTodos(todos);

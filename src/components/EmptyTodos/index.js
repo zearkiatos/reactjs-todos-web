@@ -1,6 +1,8 @@
 import './EmptyTodos.css';
-const EmptyTodos = () => {
-    return <p>Create your first TODO</p>;
+const EmptyTodos = ({ children }) => {
+    return (
+        <div>{children}</div>
+    );
 }
 
 export default EmptyTodos;

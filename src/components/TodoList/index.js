@@ -1,7 +1,24 @@
 import "./todoList.css";
-const TodoList = ({ children }) => {
+const TodoList = ({
+  children,
+  error,
+  loading,
+  showEmptyTodos,
+  showRender,
+  showEmptySearchResults,
+  onError,
+  onLoading,
+  onEmptyTodos,
+  onEmptySearchResults,
+  render
+}) => {
   return (
-    <section>
+    <section className="todolist-container">
+      {error && onError()}
+      {loading && onLoading()}
+      {showEmptyTodos && onEmptyTodos()}
+      {showEmptySearchResults && onEmptySearchResults()}
+      {showRender && render()}
       <ul>{children}</ul>
     </section>
   );
