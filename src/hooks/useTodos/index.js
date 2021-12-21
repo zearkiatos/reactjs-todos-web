@@ -1,9 +1,31 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useReducer } from "react";
 import useTodosLocalStorageRepository from "../useTodosLocalStorageRepository";
 import constants from "../../constants";
 const FAKE_LOADING_TIMER = 5000;
 
+const initialState = {
+  loading: true,
+  error: null,
+  searchValue: "",
+  openModal: false,
+  totalTodos: 0,
+  sincronizedItems: true,
+  todosFound: [],
+  todosFiltered: []
+};
+
 const useTodos = () => {
+  const [state, dispatch] = useReducer(reducer, initialState);
+  const {
+    loading,
+    error,
+    searchValue,
+    openModal,
+    totalTodos,
+    sincronizedItems,
+    todos,
+    todosFiltered
+  } = state;
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const { add: addTodos, find } = useTodosLocalStorageRepository(
