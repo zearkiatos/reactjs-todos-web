@@ -1,21 +1,86 @@
-import { useState, useEffect, useReducer } from "react";
+import { useEffect, useReducer } from "react";
 import useTodosLocalStorageRepository from "../useTodosLocalStorageRepository";
 import constants from "../../constants";
+import { TODOS_TYPES } from "../../types";
 const FAKE_LOADING_TIMER = 5000;
 
-const initialState = {
-  loading: true,
-  error: null,
-  searchValue: "",
-  openModal: false,
-  totalTodos: 0,
-  sincronizedItems: true,
-  todosFound: [],
-  todosFiltered: []
-};
-
 const useTodos = () => {
+  const { add: addTodos, find } = useTodosLocalStorageRepository(
+    constants.STORAGE_NAME
+  );
+  const initialState = {
+    loading: true,
+    error: null,
+    searchValue: "",
+    openModal: false,
+    totalTodos: 0,
+    sincronizedItems: true,
+    todosFound: [],
+    todosFiltered: [],
+    todos: []
+  };
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const onError = (error) =>
+    dispatch({
+      type: TODOS_TYPES.ERROR,
+      payload: error
+    });
+  const onSuccess = (filteredItem) => {
+    dispatch({
+      type: TODOS_TYPES.SUCCESS,
+      payload: filteredItem
+    });
+  };
+
+  const onLoading = (isLoading) => {
+    dispatch({
+      type: TODOS_TYPES.LOADING,
+      payload: isLoading
+    });
+  };
+
+  const onSynchronization = () => {
+    dispatch({
+      type: TODOS_TYPES.SYNCHRONIZATION
+    });
+  };
+
+  const onFilter = (todosFiltered) => {
+    dispatch({
+      type: TODOS_TYPES.FILTER,
+      payload: todosFiltered
+    });
+  };
+
+  const onCount = (totalTodos) => {
+    dispatch({
+      type: TODOS_TYPES.COUNT,
+      payload: totalTodos
+    });
+  };
+
+  const onSearchValue = (value) => {
+    dispatch({
+      type: TODOS_TYPES.SEARCH,
+      payload: value
+    });
+  };
+
+  const onSave = (todos) => {
+    dispatch({
+      type: TODOS_TYPES.SAVE,
+      payload: todos
+    });
+  };
+
+  const onOpenModal = (open) => {
+    dispatch({
+      type: TODOS_TYPES.OPEN_MODAL,
+      payload: open
+    });
+  };
+
   const {
     loading,
     error,
@@ -26,39 +91,28 @@ const useTodos = () => {
     todos,
     todosFiltered
   } = state;
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
-  const { add: addTodos, find } = useTodosLocalStorageRepository(
-    constants.STORAGE_NAME
-  );
-  const [searchValue, setSearchValue] = useState("");
-  const [openModal, setOpenModal] = useState(false);
-  const [totalTodos, setTotalTodos] = useState(0);
-  const [sincronizedItems, setSincronizedItem] = useState(true);
+
   let todosFound = [];
   try {
     setTimeout(() => {
-      setLoading(false);
+      onLoading();
     }, FAKE_LOADING_TIMER);
     todosFound = find();
   } catch (ex) {
-    setError(ex);
+    onError(ex);
   }
   useEffect(() => {
     try {
       setTimeout(() => {
-        setLoading(false);
+        onLoading(false);
       }, FAKE_LOADING_TIMER);
       todosFound = find();
-      setTodosFiltered(todosFound);
-      setSincronizedItem(true);
+      onSuccess(todosFound);
     } catch (ex) {
-      setError(ex);
+      onError(ex);
     }
   }, [sincronizedItems]);
-  const [todos, setTodos] = useState(todosFound);
 
-  const [todosFiltered, setTodosFiltered] = useState(todos);
 
   let completedTodos = todosFiltered.filter((todo) => todo.completed).length;
 
@@ -68,21 +122,21 @@ const useTodos = () => {
     );
 
     if (todosFound.length !== todosFiltered.length) {
-      setTodosFiltered(todosFound);
+      onFilter(todosFound);
     }
   }, [searchValue]);
 
   useEffect(() => {
-    setTodosFiltered(todos);
+    todosFound = find();
+    onFilter(todosFound);
   }, [todos]);
 
   useEffect(() => {
-    setTotalTodos(todosFiltered.length);
+    onCount(todosFiltered.length);
   }, [todosFiltered]);
 
   const sincronize = () => {
-    setLoading(true);
-    setSincronizedItem(false);
+    onSynchronization();
   };
 
   return {
@@ -92,14 +146,60 @@ const useTodos = () => {
     todos,
     completedTodos,
     searchValue,
-    setSearchValue,
+    onSearchValue,
     todosFiltered,
-    setTodos,
+    onSave,
     openModal,
-    setOpenModal,
+    onOpenModal,
     addTodos,
     sincronize
   };
 };
+
+const reducerObject = (state, payload) => ({
+  [TODOS_TYPES.ERROR]: {
+    ...state,
+    error: true
+  },
+  [TODOS_TYPES.SUCCESS]: {
+    ...state,
+    loading: false,
+    error: false,
+    sincronizedItems: true,
+    todosFiltered: payload
+  },
+  [TODOS_TYPES.LOADING]: {
+    ...state,
+    loading: payload
+  },
+  [TODOS_TYPES.SYNCHRONIZATION]: {
+    ...state,
+    loading: true,
+    sincronizedItems: false
+  },
+  [TODOS_TYPES.FILTER]: {
+    ...state,
+    todosFiltered: payload
+  },
+  [TODOS_TYPES.SEARCH]: {
+    ...state,
+    searchValue: payload
+  },
+  [TODOS_TYPES.SAVE]: {
+    ...state,
+    todos: payload
+  },
+  [TODOS_TYPES.COUNT]: {
+    ...state,
+    totalTodos: payload
+  },
+  [TODOS_TYPES.OPEN_MODAL]: {
+    ...state,
+    openModal: payload
+  }
+});
+
+const reducer = (state, action) =>
+  reducerObject(state, action.payload)[action.type] || state;
 
 export { useTodos };
