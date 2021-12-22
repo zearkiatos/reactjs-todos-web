@@ -2,21 +2,21 @@ import { useState } from 'react';
 import './TodoForm.css'
 
 const TodosForm = ({
-    setTodos,
-    setOpenModal,
+    onSave,
+    onOpenModal,
     addTodos
 } ) => {
     const [newTodo, setTodo] = useState('');
     const onCancel = () => {
-        setOpenModal(false);
+        onOpenModal(false);
     };
     const onSubmit = (event) => {
         event.preventDefault();
         const todos = addTodos({
             text: newTodo
         });
-        setTodos(todos);
-        setOpenModal(false);
+        onSave(todos);
+        onOpenModal(false);
     };
 
     const onChange = (event) => {
