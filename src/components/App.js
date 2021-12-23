@@ -14,26 +14,31 @@ import TodoHeader from "./TodoHeader";
 import { ChangeAlertWithStorageListener } from "./StorageChangeAlert";
 
 const App = () => {
+  const { states, stateUpdaters } = useTodos();
+
   const {
+    loading,
+    error,
     totalTodos,
     todos,
     completedTodos,
     searchValue,
-    setSearchValue,
-    loading,
-    error,
+    sincronize: sincronizeTodos,
     todosFiltered,
-    setTodos,
-    openModal,
-    setOpenModal,
-    addTodos,
-    sincronize: sincronizeTodos
-  } = useTodos();
+    openModal
+  } = states;
+
+  const { 
+    onSave,
+    onSearchValue,
+    onOpenModal,
+    addTodos 
+  } = stateUpdaters;
   return (
     <Fragment>
       <TodoHeader loading={loading}>
         <TodoCounter totalTodos={totalTodos} completedTodos={completedTodos} />
-        <TodoSearch searchValue={searchValue} setSearchValue={setSearchValue} />
+        <TodoSearch searchValue={searchValue} onSearchValue={onSearchValue} />
       </TodoHeader>
       <TodoList
         error={error}
@@ -54,14 +59,14 @@ const App = () => {
             <p>There is not result for: {searchValue} </p>
           </EmptyTodos>
         )}
-        render={() => <TodoItems todos={todosFiltered} setTodos={setTodos} />}
+        render={() => <TodoItems todos={todosFiltered} onSave={onSave} />}
       />
-      <CreateTodoButton setOpenModal={setOpenModal} />
+      <CreateTodoButton onOpenModal={onOpenModal} />
       {!!openModal && (
         <Modal openModal={openModal}>
           <TodosForm
-            setTodos={setTodos}
-            setOpenModal={setOpenModal}
+            onSave={onSave}
+            onOpenModal={onOpenModal}
             addTodos={addTodos}
           />
         </Modal>

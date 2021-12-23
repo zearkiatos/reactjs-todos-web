@@ -1,8 +1,8 @@
 import React from "react";
 import "./todoSearch.css";
-const TodoSearch = ({ searchValue, setSearchValue, loading }) => {
+const TodoSearch = ({ searchValue, onSearchValue, loading }) => {
   const onSearchValueChange = (event) => {
-    setSearchValue(event.target.value);
+    onSearchValue(event.target.value);
   };
   return (
     <input

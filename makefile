@@ -3,4 +3,7 @@ docker-dev:
 
 docker-build:
 	docker-compose up
+
+docker-down:
+	docker-compose down
 	

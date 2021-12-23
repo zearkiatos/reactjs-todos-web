@@ -3,7 +3,7 @@ import TodoItem from "../TodoItem";
 import useTodosLocalStorageRepository from '../../hooks/useTodosLocalStorageRepository';
 import constants from '../../constants'
 
-const renderTodoItems = ({ todos, setTodos }) =>
+const renderTodoItems = ({ todos, onSave }) =>
   todos
     ? todos.map((todo) => {
         const { save } = useTodosLocalStorageRepository(constants.STORAGE_NAME);
@@ -17,14 +17,14 @@ const renderTodoItems = ({ todos, setTodos }) =>
                 }
               : todo
           );
-          setTodos(todoMapped);
+          onSave(todoMapped);
           save(todoMapped);
         };
 
         const onDelete = (text) => {
           let newTodos = todos.filter((todo) => todo.text !== text);
           console.log(newTodos);
-          setTodos(newTodos);
+          onSave(newTodos);
           save(newTodos);
         };
 
