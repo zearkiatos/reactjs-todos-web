@@ -139,20 +139,28 @@ const useTodos = () => {
     onSynchronization();
   };
 
-  return {
+  const states = {
     loading,
     error,
     totalTodos,
     todos,
     completedTodos,
     searchValue,
-    onSearchValue,
     todosFiltered,
-    onSave,
     openModal,
+    sincronize,
+  };
+
+  const stateUpdaters = {
+    onSearchValue,
+    onSave,
     onOpenModal,
     addTodos,
-    sincronize
+  };
+
+  return {
+    states,
+    stateUpdaters
   };
 };
 

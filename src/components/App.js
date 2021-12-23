@@ -14,21 +14,26 @@ import TodoHeader from "./TodoHeader";
 import { ChangeAlertWithStorageListener } from "./StorageChangeAlert";
 
 const App = () => {
+  const { states, stateUpdaters } = useTodos();
+
   const {
+    loading,
+    error,
     totalTodos,
     todos,
     completedTodos,
     searchValue,
-    onSearchValue,
-    loading,
-    error,
+    sincronize: sincronizeTodos,
     todosFiltered,
+    openModal
+  } = states;
+
+  const { 
     onSave,
-    openModal,
+    onSearchValue,
     onOpenModal,
-    addTodos,
-    sincronize: sincronizeTodos
-  } = useTodos();
+    addTodos 
+  } = stateUpdaters;
   return (
     <Fragment>
       <TodoHeader loading={loading}>
